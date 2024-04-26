@@ -1,0 +1,35 @@
+
+import random
+
+
+# Responses to different questions
+responses = {
+    "headache": "Headaches can be caused by many factors, including stress, dehydration, or tension. It's important to drink plenty of water and manage stress levels.",
+    "fever": "Fever is often a sign that your body is fighting off an infection. Make sure to rest, stay hydrated, and consider taking over-the-counter medication like ibuprofen if necessary.",
+    "cough": "A cough can be caused by various factors, such as allergies, infections, or irritants. If it persists or is accompanied by other symptoms, it's best to consult a doctor.",
+    "sore throat": "A sore throat can be a symptom of many conditions, including viral or bacterial infections. Gargling with salt water and staying hydrated may help alleviate discomfort.",
+    "stomach ache": "Stomach aches can be caused by many factors, such as indigestion, food poisoning, or stomach viruses. Eating bland foods and avoiding spicy or greasy foods may help.",
+    "back pain": "Back pain can result from various factors, including poor posture, muscle strain, or injury. Applying heat or ice and doing gentle stretches may provide relief.",
+    "fatigue": "Fatigue can be caused by factors like insufficient sleep, stress, or underlying health conditions. Make sure to prioritize rest and relaxation.",
+    "rash": "A rash can be caused by allergies, infections, or skin conditions. Avoid scratching the affected area and consider using over-the-counter anti-itch creams or antihistamines.",
+    "difficulty breathing": "Difficulty breathing can be a serious symptom that requires immediate medical attention. It can be caused by asthma, allergies, or respiratory infections.",
+    "dizziness": "Dizziness can have various causes, including dehydration, low blood pressure, or inner ear problems. Sit or lie down if you feel dizzy and avoid sudden movements.",
+}
+
+
+# Function to handle user input
+def medical_chatbot():
+    print("Welcome to the Medical Chatbot! How can I assist you today?")
+    while True:
+        user_input = input("You: ").lower()
+        if user_input == "exit":
+            print("Thank you for using the Medical Chatbot. Take care!")
+            break
+        response = responses.get(user_input, "I'm sorry, I'm not sure how to help with that.")
+        print("Chatbot:", response)
+
+
+# Main function
+if __name__ == "__main__":
+    medical_chatbot()
+

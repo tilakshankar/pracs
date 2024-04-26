@@ -1,0 +1,47 @@
+# Define facts
+facts = {
+    'likes_sun': ['john'],  # John likes the sun (assuming John is a gardener)
+    'father': {'john': 'peter'},  # John's father is Peter
+    'bald': ['peter'],  # Peter is bald
+    'fool': ['john'],  # John can be fooled at any time (assuming John is a person)
+    'purple_mushroom': ['mushroom1', 'mushroom2'],  # Mushroom1 and Mushroom2 are purple
+    'poisonous': ['mushroom1']  # Mushroom1 is poisonous
+}
+
+
+# Additional facts
+facts['gardener'] = ['john']  # John is a gardener
+
+
+# Define functions for logical rules
+def all_gardeners_like_sun():
+    for gardener in facts['gardener']:
+        if gardener not in facts['likes_sun']:
+            return False
+    return True
+
+
+def johns_father_is_bald():
+    if facts['father'].get('john') in facts['bald']:
+        return True
+    return False
+
+
+def you_can_fool_some_people_all_the_time():
+    if 'john' in facts['fool']:
+        return True
+    return False
+
+
+def all_purple_mushrooms_are_poisonous():
+    for mushroom in facts['purple_mushroom']:
+        if mushroom not in facts['poisonous']:
+            return False
+    return True
+
+
+# Check the logical rules against the facts
+print("Every gardener likes the sun:", all_gardeners_like_sun())
+print("John's father is bald:", johns_father_is_bald())
+print("You can fool some of the people all of the time:", you_can_fool_some_people_all_the_time())
+print("All purple mushrooms are poisonous:", all_purple_mushrooms_are_poisonous())

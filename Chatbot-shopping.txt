@@ -1,0 +1,33 @@
+import random
+
+
+# Responses to different questions
+responses = {
+    "clothing": "We offer a wide range of clothing items, including shirts, pants, dresses, and more. You can browse our clothing collection on our website or visit our store.",
+    "shoes": "We have a variety of shoe options available, including sneakers, boots, sandals, and more. You can find our shoe collection on our website or in-store.",
+    "accessories": "We offer a selection of accessories, including bags, jewelry, hats, and scarves. You can explore our accessories collection online or in-person.",
+    "sales": "We have ongoing sales and promotions on select items. You can check our website or sign up for our newsletter to stay updated on our latest deals.",
+    "shipping": "We offer shipping options for online orders. Shipping costs and delivery times vary depending on your location and the items you purchase.",
+    "returns": "We have a return policy that allows you to return items within a certain period for a refund or exchange. You can find detailed information about our return policy on our website.",
+    "payment methods": "We accept various payment methods, including credit cards, debit cards, PayPal, and Apple Pay. You can choose your preferred payment method at checkout.",
+    "gift cards": "We offer gift cards that can be used for purchases online or in-store. You can purchase gift cards in different denominations on our website or at our store.",
+    "customer service": "Our customer service team is available to assist you with any questions or concerns you may have. You can reach out to us via phone, email, or live chat.",
+    "store locations": "We have multiple store locations across the country. You can find the nearest store to you by using our store locator tool on our website.",
+}
+
+
+# Function to handle user input
+def shopping_chatbot():
+    print("Welcome to the Shopping Chatbot! How can I assist you today?")
+    while True:
+        user_input = input("You: ").lower()
+        if user_input == "exit":
+            print("Thank you for using the Shopping Chatbot. Happy shopping!")
+            break
+        response = responses.get(user_input, "I'm sorry, I'm not sure how to help with that.")
+        print("Chatbot:", response)
+
+
+# Main function
+if __name__ == "__main__":
+    shopping_chatbot()

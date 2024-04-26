@@ -1,0 +1,42 @@
+% Facts
+squirrel(charlie).
+squirrel(sam).
+black(charlie).
+
+
+purple_mushroom(mushroom1).
+purple_mushroom(mushroom2).
+
+
+tall(harry). % Assuming Harry is tall
+
+
+% Rules
+
+
+% Directly on top
+directly_on_top(charlie, nuts). % Assuming charlie is on top of nuts
+directly_on_top(nuts, tree). % Assuming nuts are on top of tree
+
+
+% Above relation
+above(X, Y) :- directly_on_top(X, Y).
+above(X, Y) :- directly_on_top(X, Z), above(Z, Y).
+
+
+% Querying the statements
+% Query for a. "Some squirrels are black."
+?- squirrel(X), black(X).
+
+
+% Query for b. "No purple mushroom is poisonous."
+?- not((purple_mushroom(X), poisonous(X))).
+
+
+% Query for c. "Harry is not tall."
+?- not(tall(harry)).
+
+
+% Query for d. "X is above Y if X is directly on top of Y or there is a pile of one or more other objects directly on top of one another starting with X and ending with Y."
+% Query for e. "You can fool all of the people some of the time."
+?- forall(person(X), exists(Time, fool(X, Time))).

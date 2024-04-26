@@ -1,0 +1,33 @@
+import random
+
+
+# Responses to different questions
+responses = {
+    "admissions": "For information about admissions, including application deadlines and requirements, please visit our college website or contact the admissions office.",
+    "programs": "We offer a variety of programs including Engineering, Business, Computer Science, Arts, and more. You can find detailed information about each program on our college website.",
+    "tuition": "Tuition fees vary depending on the program and whether you are an in-state or out-of-state student. You can find detailed tuition information on our college website or by contacting the financial aid office.",
+    "scholarships": "We offer a range of scholarships based on academic merit, financial need, and other criteria. You can find information about available scholarships on our college website or by contacting the financial aid office.",
+    "campus tour": "We offer campus tours for prospective students and their families. You can schedule a campus tour through our college website or by contacting the admissions office.",
+    "housing": "We provide on-campus housing options for students. You can find information about housing options, facilities, and costs on our college website or by contacting the housing office.",
+    "student life": "Our college offers a vibrant student life with various clubs, organizations, and events. You can learn more about student life on our college website or by reaching out to the student affairs office.",
+    "academic support": "We provide academic support services such as tutoring, counseling, and academic advising to help students succeed. You can find information about academic support services on our college website or by contacting the academic support center.",
+    "career services": "We offer career services to assist students with job searches, internships, resume writing, and interview preparation. You can learn more about career services on our college website or by contacting the career center.",
+    "faculty": "Our college has dedicated and experienced faculty members who are committed to student success. You can find information about faculty members and their expertise on our college website.",
+}
+
+
+# Function to handle user input
+def college_inquiry_chatbot():
+    print("Welcome to the College Inquiry Chatbot! How can I assist you today?")
+    while True:
+        user_input = input("You: ").lower()
+        if user_input == "exit":
+            print("Thank you for using the College Inquiry Chatbot. Goodbye!")
+            break
+        response = responses.get(user_input, "I'm sorry, I'm not sure how to help with that.")
+        print("Chatbot:", response)
+
+
+# Main function
+if __name__ == "__main__":
+    college_inquiry_chatbot()

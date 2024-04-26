@@ -1,0 +1,41 @@
+% Facts
+likes_sun(john).  % John likes the sun (assuming John is a gardener)
+father(john, peter).  % John's father is Peter
+bald(peter).  % Peter is bald
+fool(john, _).  % John can be fooled at any time (assuming John is a person)
+purple_mushroom(mushroom1).  % Mushroom1 is purple
+purple_mushroom(mushroom2).  % Mushroom2 is purple
+poisonous(mushroom1).  % Mushroom1 is poisonous
+% Assume no information about Mushroom2's toxicity
+
+
+% Additional Facts
+gardener(john).  % John is a gardener
+
+
+% Rules (implicit)
+
+
+% Every gardener likes the sun
+likes_sun(X) :- gardener(X).
+
+
+% Querying the statements
+% Query for a. "Every gardener likes the sun."
+?- forall(gardener(X), likes_sun(X)).
+
+
+% Query for b. "John's father is bald."
+?- father(john, Father), bald(Father).
+
+
+% Query for c. "Every gardener likes the sun." (alternative method)
+?- not((gardener(X), not(likes_sun(X)))).
+
+
+% Query for d. "You can fool some of the people all of the time."
+?- fool(X, _), person(X).
+
+
+% Query for e. "All purple mushrooms are poisonous."
+?- not((purple_mushroom(X), not(poisonous(X)))).

@@ -1,0 +1,30 @@
+% Facts
+crow(john).
+crow(sarah).
+squirrel(bob).
+eighteen(john).
+vegetarian(sarah).
+
+
+% Rules
+black(X) :- crow(X).
+black(X) :- squirrel(X).
+allowed_to_vote(X) :- eighteen(X).
+eats_meat(X) :- not(vegetarian(X)).
+
+
+% Queries
+% Query for a. "All crows are black."
+?- not((crow(X), not(black(X)))).
+
+
+% Query for c. "Some squirrels are black."
+?- squirrel(X), black(X).
+
+
+% Query for d. "If someone is eighteen, then they are allowed to vote."
+?- not((eighteen(X), not(allowed_to_vote(X)))).
+
+
+% Query for e. "A vegetarian is a person who eats no meat."
+?- not((vegetarian(X), eats_meat(X))).

@@ -1,0 +1,46 @@
+# Define facts
+facts = {
+    'crows': ['john', 'sarah'],
+    'squirrels': ['bob'],
+    'eighteen': ['john'],
+    'vegetarian': ['sarah'],
+    'black': ['john', 'sarah', 'bob'],  # Assuming all mentioned entities are black
+    'allowed_to_vote': ['john'],
+    'eats_meat': ['']
+}
+
+
+# Define logical rules
+def all_crows_are_black():
+    for crow in facts['crows']:
+        if crow not in facts['black']:
+            return False
+    return True
+
+
+def some_squirrels_are_black():
+    for squirrel in facts['squirrels']:
+        if squirrel in facts['black']:
+            return True
+    return False
+
+
+def if_eighteen_then_allowed_to_vote():
+    for person in facts['eighteen']:
+        if person not in facts['allowed_to_vote']:
+            return False
+    return True
+
+
+def vegetarian_does_not_eat_meat():
+    for person in facts['vegetarian']:
+        if person in facts['eats_meat']:
+            return False
+    return True
+
+
+# Check the logical rules against the facts
+print("All crows are black:", all_crows_are_black())
+print("Some squirrels are black:", some_squirrels_are_black())
+print("If someone is eighteen, then they are allowed to vote:", if_eighteen_then_allowed_to_vote())
+print("A vegetarian is a person who eats no meat:", vegetarian_does_not_eat_meat())

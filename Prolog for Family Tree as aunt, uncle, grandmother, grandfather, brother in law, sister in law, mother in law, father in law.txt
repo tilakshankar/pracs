@@ -1,0 +1,114 @@
+/* Facts */
+male(john).
+male(peter).
+male(mike).
+male(jack).
+male(tom).
+male(dan).
+
+
+female(lisa).
+female(sarah).
+female(emily).
+female(amy).
+female(jane).
+
+
+parent(john, peter).
+parent(john, sarah).
+parent(lisa, peter).
+parent(lisa, sarah).
+parent(peter, mike).
+parent(peter, emily).
+parent(sarah, jack).
+parent(sarah, amy).
+parent(tom, mike).
+parent(tom, emily).
+parent(jane, jack).
+parent(jane, amy).
+
+
+/* Rules */
+father(Father, Child) :-
+    male(Father),
+    parent(Father, Child).
+
+
+mother(Mother, Child) :-
+    female(Mother),
+    parent(Mother, Child).
+
+
+grandfather(Grandfather, Grandchild) :-
+    father(Grandfather, Parent),
+    parent(Parent, Grandchild).
+
+
+grandmother(Grandmother, Grandchild) :-
+    mother(Grandmother, Parent),
+    parent(Parent, Grandchild).
+
+
+sibling(Sibling1, Sibling2) :-
+    parent(Parent, Sibling1),
+    parent(Parent, Sibling2),
+    Sibling1 \= Sibling2.
+
+
+/* Rules for in-laws */
+brother_in_law(Person, Sibling) :-
+    male(Person),
+    parent(Parent, Person),
+    sibling(Parent, Spouse),
+    parent(Spouse, Sibling),
+    Person \= Sibling.
+
+
+sister_in_law(Person, Sibling) :-
+    female(Person),
+    parent(Parent, Person),
+    sibling(Parent, Spouse),
+    parent(Spouse, Sibling),
+    Person \= Sibling.
+
+father_in_law(FatherInLaw, Person) :-
+    male(FatherInLaw),
+    parent(FatherInLaw, Spouse),
+    parent(Spouse, Person).
+
+
+mother_in_law(MotherInLaw, Person) :-
+    female(MotherInLaw),
+    parent(MotherInLaw, Spouse),
+    parent(Spouse, Person).
+
+
+aunt(Aunt, NieceNephew) :-
+    female(Aunt),
+    parent(Parent, NieceNephew),
+    sibling(Parent, Aunt).
+
+
+uncle(Uncle, NieceNephew) :-
+    male(Uncle),
+    parent(Parent, NieceNephew),
+    sibling(Parent, Uncle).
+
+
+/* Queries */
+/* Query for finding aunt */
+?- aunt(Aunt, NieceNephew).
+/* Query for finding uncle */
+?- uncle(Uncle, NieceNephew).
+/* Query for finding grandmother */
+?- grandmother(Grandmother, Grandchild).
+/* Query for finding grandfather */
+?- grandfather(Grandfather, Grandchild).
+/* Query for finding brother-in-law */
+?- brother_in_law(BrotherInLaw, Sibling).
+/* Query for finding sister-in-law */
+?- sister_in_law(SisterInLaw, Sibling).
+/* Query for finding mother-in-law */
+?- mother_in_law(MotherInLaw, Person).
+/* Query for finding father-in-law */
+?- father_in_law(FatherInLaw, Person).

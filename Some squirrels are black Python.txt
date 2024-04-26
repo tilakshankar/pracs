@@ -1,0 +1,60 @@
+# Define facts
+facts = {
+    'squirrels': ['charlie', 'sam'],
+    'black_squirrels': ['charlie'],
+    'purple_mushrooms': ['mushroom1', 'mushroom2'],
+    'poisonous_mushrooms': [],
+    'not_tall': ['harry'],
+}
+
+
+# Define logical rules
+
+
+# Rule for statement a. "Some squirrels are black."
+def some_squirrels_are_black():
+    for squirrel in facts['squirrels']:
+        if squirrel in facts['black_squirrels']:
+            return True
+    return False
+
+
+# Rule for statement b. "No purple mushroom is poisonous."
+def no_purple_mushroom_is_poisonous():
+    for mushroom in facts['purple_mushrooms']:
+        if mushroom in facts['poisonous_mushrooms']:
+            return False
+    return True
+
+
+# Rule for statement c. "Harry is not tall."
+def harry_is_not_tall():
+    return 'harry' in facts['not_tall']
+
+
+# Rule for statement d. "X is above Y if X is directly on top of Y or there is a pile of one or more other objects directly on top of one another starting with X and ending with Y."
+def is_above(X, Y, directly_on_top):
+    if (X, Y) in directly_on_top:
+        return True
+    for Z, Z_above in directly_on_top:
+        if Z == X and is_above(Z_above, Y, directly_on_top):
+            return True
+    return False
+
+
+# Rule for statement e. "You can fool all of the people some of the time."
+def you_can_fool_all_of_the_people_some_of_the_time():
+    return True  # Assumed true for simplicity
+
+
+# Check the logical rules against the facts
+print("Some squirrels are black:", some_squirrels_are_black())
+print("No purple mushroom is poisonous:", no_purple_mushroom_is_poisonous())
+print("Harry is not tall:", harry_is_not_tall())
+
+
+# Test for statement d
+directly_on_top = [('charlie', 'nuts'), ('nuts', 'tree')]
+print("Charlie is above nuts:", is_above('charlie', 'nuts', directly_on_top))
+print("Charlie is above tree:", is_above('charlie', 'tree', directly_on_top))
+print("You can fool all of the people some of the time:", you_can_fool_all_of_the_people_some_of_the_time())
